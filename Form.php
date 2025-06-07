@@ -39,6 +39,34 @@
             font-size: 16px;
             animation: MoveBox 5s ease-in-out infinite;
         }
+        .btn{
+            border: none;
+            width: 150px;
+            height: max-content;
+            margin-top: 20px;
+            padding: 7px;
+            border-radius: 10px;
+            border: none;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            background: linear-gradient(16deg , #2095c433 , #579ec756);
+            font-size: 16px;
+        }
+        .btn:hover{
+            background-color: #57c7a571;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        .btn_Back{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #btn_Box{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
         @keyframes MoveBox {
             0%{
                 transform: translateY(-5px);
@@ -109,17 +137,34 @@
                         echo('<td>' . $Pass . '</td>');
                     echo('</tr>');
                 echo('</table>');
+                echo('<div id="btn_Box">');
+                    echo('<form action="Form.html" method="post">');
+                        echo('<button type="submit" class="btn">Edit</button>');
+                    echo('</form>');
+                    echo('<form action="Save.php" method="post">');
+                        echo('<button type="submit" class="btn">Save</button>');
+                    echo('</form>');
+                echo('</div>');
             }
             else
             {
                 echo('<h3>Please enter matching passwords!</h3>');
+                echo('<form action="Form.html" method="post">');
+                    echo('<div class="btn_Back">');
+                        echo('<button type="submit" class="btn">Back to sign in</button>');
+                    echo('</div>');
+                echo('</form>');
             }
         }
         else
         {
             echo('<h3>Please submit all required details!</h3>');
+            echo('<form action="Form.html" method="post">');
+                echo('<div class="btn_Back">');
+                    echo('<button type="submit" class="btn">Back to sign in</button>');
+                echo('</div>');
+            echo('</form>');
         }
-
     ?>
     </div>
 </body>
