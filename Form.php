@@ -95,6 +95,7 @@
     <H1 id="Header">Your <span id="Hspan">sign in</span> inforamtion</H1>
     <div id="preview">
         <?php
+        session_start();
         if(isset($_POST["FName"]) && !empty($_POST["FName"]) &&
           isset($_POST["LName"]) && !empty($_POST["LName"]) &&
           isset($_POST["Email"]) && !empty($_POST["Email"]) &&
@@ -111,6 +112,11 @@
             $RepeatPass = $_POST["RepeatPass"];
             if($Pass === $RepeatPass)
             {
+                $_SESSION["FName"] = $FName;
+                $_SESSION["LName"] = $LName;
+                $_SESSION["Email"] = $Email;
+                $_SESSION["Phone"] = $Phone;
+                $_SESSION["Pass"] = $Pass;
                 echo('<table>');
                     echo('<tr>');
                         echo('<td>First name: </td>');
@@ -119,7 +125,7 @@
 
                     echo('<tr>');
                         echo('<td>Last name: </td>');
-                        echo('<td>' . $FName . '</td>');
+                        echo('<td>' . $LName . '</td>');
                     echo('</tr>');
 
                     echo('<tr>');
@@ -134,15 +140,16 @@
 
                     echo('<tr>');
                         echo('<td>Password:</td>');
-                        echo('<td>' . $Pass . '</td>');
+                        echo('<td>' . str_repeat('*', strlen($Pass)) . '</td>');
                     echo('</tr>');
                 echo('</table>');
+
                 echo('<div id="btn_Box">');
                     echo('<form action="Form.html" method="post">');
                         echo('<button type="submit" class="btn">Edit</button>');
                     echo('</form>');
                     echo('<form action="Save.php" method="post">');
-                        echo('<button type="submit" class="btn">Save</button>');
+                        echo('<button type="submit" class="btn" id="save" name="save">Save</button>');
                     echo('</form>');
                 echo('</div>');
             }
